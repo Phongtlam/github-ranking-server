@@ -2,6 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const fetch = require('node-fetch');
+
+const routes = require('./routes');
+
 const { Octokit } = require("@octokit/rest");
 const octokit = new Octokit();
 require('dotenv').config();
@@ -19,6 +22,8 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/get', routes.get);
+
 app.get('/', function (req, res) {
   // octokit.repos
   //   .listForOrg({
@@ -31,12 +36,12 @@ app.get('/', function (req, res) {
   //     res.send(JSON.stringify(data))
   //   });
 
-  fetch("https://api.github.com/orgs/netflix/repos", { method: 'GET' })
-    .then(response => response.json())
-    .then(response => {
-      console.log('response is', response)
-      res.send(JSON.stringify(response))
-    })
+  // fetch("https://api.github.com/orgs/netflix/repos", { method: 'GET' })
+  //   .then(response => response.json())
+  //   .then(response => {
+  //     console.log('response is', response)
+  //     res.send(JSON.stringify(response))
+  //   })
 })
 
 module.exports = app;
