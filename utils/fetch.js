@@ -1,5 +1,12 @@
 const fetch = require('node-fetch');
+
 const { get } = require('../enums/fetch.js');
+
+const getTotalPageFromLink = link => {
+  const split = link.split('page=');
+  const target = split[split.length - 1];
+  return Number(target.split('>')[0]);
+}
 
 class Fetch {
   constructor() {
@@ -14,11 +21,17 @@ class Fetch {
     }
   }
 
-  get({ type, orgName, repoName }) {
-    return fetch(`${this.buildUrl({ type, orgName, repoName })}`, { method: 'GET' })
-      .then(response => {
-        if (response.status === 200) return response.json()
-        throw response;
+  get({ type, orgName, repoName, query }) {
+    return fetch(`${this.buildUrl({ type, orgName, repoName })}?${query}`, { method: 'GET' })
+      .then(res => {
+        return res.json().then(json => ({
+          totalPage: getTotalPageFromLink(res.headers.get('link')),
+          status: res.status,
+          data: json
+        }))
+          .catch(error => {
+            throw new Error(error)
+          })
       })
       .catch(error => ({ error }))
   }

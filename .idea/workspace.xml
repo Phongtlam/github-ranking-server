@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f220b26d-dd49-41b2-aaa4-9f40a7ef2757" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/enums/fetch.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/fetch.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/queryParams.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/get.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/get.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/fetch.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/fetch.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
