@@ -1,15 +1,36 @@
 const express = require('express');
-const fetch = require('node-fetch');
+const url = require('url');
+const fetch = require('../utils/fetch.js');
+const { get } = require("../enums/fetch");
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  fetch("https://api.github.com/orgs/netflix/repos", { method: 'GET' })
-    .then(response => response.json())
+router.get('/all-repos', (req, res) => {
+  const qs = url.parse(req.url, true).query;
+  const orgName = qs.orgName || 'netflix';
+  fetch.get({
+    type: get.ALL_REPOS,
+    orgName
+  })
     .then(response => {
-      console.log('response is', response)
       res.send(JSON.stringify(response))
-    })
+    });
+});
+
+router.get('/view-commits', (req, res) => {
+  const qs = url.parse(req.url, true).query;
+  const orgName = qs.orgName || 'netflix';
+  const repoName = qs.repoName || '';
+  const orgPage = qs.orgPage || 1;
+  fetch.get({
+    type: get.VIEW_COMMITS,
+    orgName,
+    repoName,
+    page: orgPage
+  })
+    .then(response => {
+      res.send(JSON.stringify(response))
+    });
 });
 
 module.exports = router;
