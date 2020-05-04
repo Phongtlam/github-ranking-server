@@ -14,7 +14,7 @@ const extractGetQueryParams = req => {
     repoName: qs.repoName || '',
   };
 
-  const newQuery = Object.keys(qs).reduce((hash, key) => {
+  res.query = Object.keys(qs).reduce((hash, key) => {
     if (key !== 'orgName' && key !== 'repoName') {
       if (key === 'page') {
         hash[key] = qs[key] || 1;
@@ -25,7 +25,6 @@ const extractGetQueryParams = req => {
     return hash;
   }, {});
 
-  res.query = queryParamsBuilder(newQuery);
   return res;
 }
 

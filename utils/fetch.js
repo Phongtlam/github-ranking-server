@@ -1,11 +1,29 @@
 const fetch = require('node-fetch');
+const { queryParamsBuilder } = require("./queryParams");
 
 const { get } = require('../enums/fetch.js');
 
 const getTotalPageFromLink = link => {
+  const reg = new RegExp('[0-9]');
+  if (!link || !link.length) return 1;
   const split = link.split('page=');
-  const target = split[split.length - 1];
-  return Number(target.split('>')[0]);
+  let res = -Infinity;
+  for (const el of split) {
+    let str = ''
+    for (let i = 0; i < el.length; i++) {
+      if (reg.test(el[i])) {
+        str += el[i];
+      } else {
+        break;
+      }
+    }
+    let temp = Number(str);
+    if (!isNaN(temp)) {
+      res = Math.max(res, temp);
+    }
+  }
+  console.log('what is res', res)
+  return res === -Infinity ? 1 : res;
 }
 
 class Fetch {
@@ -22,13 +40,19 @@ class Fetch {
   }
 
   get({ type, orgName, repoName, query }) {
-    return fetch(`${this.buildUrl({ type, orgName, repoName })}?${query}`, { method: 'GET' })
+    const queryString = queryParamsBuilder(query)
+    const url = `${this.buildUrl({ type, orgName, repoName })}?${queryString}`;
+    console.log('queryString', url)
+    return fetch(url, { method: 'GET' })
       .then(res => {
-        return res.json().then(json => ({
-          totalPage: getTotalPageFromLink(res.headers.get('link')),
-          status: res.status,
-          data: json
-        }))
+        console.log(res)
+        return res.json().then(json => {
+          return {
+            totalPage: getTotalPageFromLink(res.headers.get('link')),
+            status: res.status,
+            data: json
+          }
+        })
           .catch(error => {
             throw new Error(error)
           })

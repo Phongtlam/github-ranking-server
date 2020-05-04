@@ -8,6 +8,7 @@ const router = express.Router();
 
 router.get('/all-repos', (req, res) => {
   const reqParser = extractGetQueryParams(req);
+  console.log(reqParser)
   fetch.get({
     type: get.ALL_REPOS,
     ...reqParser
