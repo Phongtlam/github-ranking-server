@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "prettier": "./node_modules/.bin/prettier --single-quote --write '**/**/*.{js,jsx}'"
   },
   "author": "Phong Lam",
   "license": "ISC",
@@ -18,7 +19,14 @@
     "express": "^4.17.1",
     "node-fetch": "^2.6.0"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run prettier"
+    }
+  },
   "devDependencies": {
-    "nodemon": "^2.0.3"
+    "husky": "^4.2.5",
+    "nodemon": "^2.0.3",
+    "prettier": "^2.0.5"
   }
 }

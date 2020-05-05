@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 
 const routes = require('./routes');
 
-const { Octokit } = require("@octokit/rest");
+const { Octokit } = require('@octokit/rest');
 const octokit = new Octokit();
 require('dotenv').config();
 
@@ -18,30 +18,13 @@ app.use(bodyParser.json());
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
   next();
 });
 
 app.use('/get', routes.get);
-
-app.get('/', function (req, res) {
-  // octokit.repos
-  //   .listForOrg({
-  //     org: "netflix",
-  //     type: "public"
-  //   })
-  //   .then(({ data }) => {
-  //     console.log('data', data)
-  //     // handle data
-  //     res.send(JSON.stringify(data))
-  //   });
-
-  // fetch("https://api.github.com/orgs/netflix/repos", { method: 'GET' })
-  //   .then(response => response.json())
-  //   .then(response => {
-  //     console.log('response is', response)
-  //     res.send(JSON.stringify(response))
-  //   })
-})
 
 module.exports = app;

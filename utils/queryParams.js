@@ -1,13 +1,13 @@
 const url = require('url');
 
-const queryParamsBuilder = objParams => {
+const queryParamsBuilder = (objParams) => {
   const esc = encodeURIComponent;
   return Object.keys(objParams)
-    .map(key => esc(key) + '=' + esc(objParams[key]))
+    .map((key) => esc(key) + '=' + esc(objParams[key]))
     .join('&');
 };
 
-const extractGetQueryParams = req => {
+const extractGetQueryParams = (req) => {
   const qs = url.parse(req.url, true).query;
   const res = {
     orgName: qs.orgName || 'netflix',
@@ -26,9 +26,9 @@ const extractGetQueryParams = req => {
   }, {});
 
   return res;
-}
+};
 
 module.exports = {
   queryParamsBuilder,
-  extractGetQueryParams
+  extractGetQueryParams,
 };
