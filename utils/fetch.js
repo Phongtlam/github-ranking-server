@@ -43,7 +43,13 @@ class Fetch {
     const queryString = queryParamsBuilder(query)
     const url = `${this.buildUrl({ type, orgName, repoName })}?${queryString}`;
     console.log('queryString', url)
-    return fetch(url, { method: 'GET' })
+    return fetch(url, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/vnd.github.v3+json',
+        Authorization: "token 5a43e0f8ce33364bfdcc71fc6f54c93e60ace88e"
+      }
+    })
       .then(res => {
         console.log(res)
         return res.json().then(json => {
