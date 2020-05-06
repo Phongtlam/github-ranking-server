@@ -1,8 +1,9 @@
 const app = require('./app');
 const server = require('http').createServer(app);
 
-const PORT = process.env.PORT || 3001;
+const HOSTNAME = process.env.HOSTNAME || '127.0.0.1';
+const PORT = process.env.PORT || 3000;
 
-server.listen(PORT, () => {
-  console.log(`Github rank is listening on port ${PORT}!`);
+server.listen(PORT, HOSTNAME, () => {
+  console.log(`Github rank is listening at http://${HOSTNAME}:${PORT}/!`);
 });

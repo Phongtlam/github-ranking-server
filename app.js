@@ -26,5 +26,8 @@ app.use((req, res, next) => {
 });
 
 app.use('/get', routes.get);
+app.use('/', (req, res) => {
+  res.send('hello to github ranking');
+})
 
 module.exports = app;
