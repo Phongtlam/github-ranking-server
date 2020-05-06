@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "index.js",
+    "start": "node index.js",
     "dev": "nodemon index.js",
-    "prettier": "./node_modules/.bin/prettier --single-quote --write '**/**/*.{js,jsx}'"
+    "prettier": "./node_modules/.bin/prettier --single-quote --write '**/**/*.{js,jsx}'",
+    "apache-bench": "ab -c 200 -n 6000 http://github-ranking.com/"
   },
   "author": "Phong Lam",
   "license": "ISC",
@@ -23,6 +24,9 @@
     "hooks": {
       "pre-commit": "npm run prettier"
     }
+  },
+  "engines": {
+    "node": "13.x"
   },
   "devDependencies": {
     "husky": "^4.2.5",

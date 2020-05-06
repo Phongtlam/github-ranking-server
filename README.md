@@ -1,14 +1,23 @@
 ### A basic setup, available commands:
 1. npm install
 2. npm run dev - start development server on localhost:3000
-2. npm run apache-bench - run ab on server
+2. npm run apache-bench - run ab on the server (only work if install NginX as below)
+
+#### Note:
+- Please create an .env file at root with these values
+- Default will work without, however you are limited to 60 queries/hour vs 5000 with no access_token
+```
+ACCESS_TOKEN
+HOSTNAME
+PORT
+```
 
 ### Create local NginX server (OPTIONAL FOR FUTURE USAGE)
 
 1. brew link pcre
 2. brew install nginx
 3. sudo brew services restart nginx
-4. sudo vim /etc/nginx/conf.d/sysmon.conf 
+4. sudo vim /etc/nginx/conf.d/github-ranking.conf 
 
 ```
 server {
@@ -31,4 +40,5 @@ server {
 ### Install Apache benchmark
 1. brew install homebrew/apache/ab
 2. npm run apache-bench
+
 
