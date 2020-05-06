@@ -1,14 +1,15 @@
 {
-  "name": "github-ranking-server",
+  "name": "github-viewer-server",
   "version": "1.0.0",
   "description": "github ranking",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "dev": "nodemon index.js",
+    "start": "NODE_ENV=production node index.js",
+    "dev": "NODE_ENV=development nodemon index.js",
     "prettier": "./node_modules/.bin/prettier --single-quote --write '**/**/*.{js,jsx}'",
-    "apache-bench": "ab -c 200 -n 6000 http://github-ranking.com/"
+    "apache-bench": "ab -c 200 -n 200 http://github-ranking.com/",
+    "apache-bench-production": "ab -c 30 -n 100 https://github-viewer-server.herokuapp.com/"
   },
   "author": "Phong Lam",
   "license": "ISC",
