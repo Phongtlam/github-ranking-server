@@ -1,31 +1,8 @@
 const fetch = require('node-fetch');
-const Headers = require('node-fetch');
 
 const { queryParamsBuilder } = require('./queryParams');
-
-const { get } = require('../enums/fetch.js');
-
-const getTotalPageFromLink = (link) => {
-  const reg = new RegExp('[0-9]');
-  if (!link || !link.length) return 1;
-  const split = link.split('page=');
-  let res = -Infinity;
-  for (const el of split) {
-    let str = '';
-    for (let i = 0; i < el.length; i++) {
-      if (reg.test(el[i])) {
-        str += el[i];
-      } else {
-        break;
-      }
-    }
-    let temp = Number(str);
-    if (!isNaN(temp)) {
-      res = Math.max(res, temp);
-    }
-  }
-  return res === -Infinity ? 1 : res;
-};
+const { get } = require('../enums/fetch');
+const getTotalPageFromLink = require('./getTotalPageFromLink');
 
 class Fetch {
   constructor() {
@@ -53,8 +30,11 @@ class Fetch {
     const headers = {
       Accept: 'application/vnd.github.v3+json',
       'Content-Type': 'application/json',
-      Authorization: `token ${process.env.ACCESS_TOKEN}`,
     };
+    const accessToken = process.env.ACCESS_TOKEN;
+    if (accessToken && accessToken.length) {
+      headers.Authorization = `token ${accessToken}`;
+    }
     return fetch(url, {
       method: 'GET',
       headers,
