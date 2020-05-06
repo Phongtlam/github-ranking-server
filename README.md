@@ -1,8 +1,9 @@
-### A basic setup:
+### A basic setup, available commands:
 1. npm install
 2. npm run dev - start development server on localhost:3000
+2. npm run apache-bench - run ab on server
 
-### Create local NginX server
+### Create local NginX server (OPTIONAL FOR FUTURE USAGE)
 
 1. brew link pcre
 2. brew install nginx
@@ -26,3 +27,8 @@ server {
 ```
 192.168.43.31 github-ranking.com
 ```
+
+### Install Apache benchmark
+1. brew install homebrew/apache/ab
+2. npm run apache-bench
+
