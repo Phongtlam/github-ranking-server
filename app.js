@@ -1,12 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const path = require('path');
-const fetch = require('node-fetch');
 
 const routes = require('./routes');
 
-const { Octokit } = require('@octokit/rest');
-const octokit = new Octokit();
 require('dotenv').config();
 
 const app = express();

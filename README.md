@@ -1,3 +1,7 @@
+### Future work:
+1. db for usage metrics
+2. mem cache if user count goes up
+
 ### A basic setup, available commands:
 1. npm install
 2. npm run dev - start development server on localhost:3000
