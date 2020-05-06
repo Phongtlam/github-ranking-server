@@ -1,3 +1,8 @@
+/**
+ *
+ * @param link  {string}
+ * @returns {number}
+ */
 const getTotalPageFromLink = (link) => {
   const reg = new RegExp('[0-9]');
   if (!link || !link.length) return 1;
@@ -13,7 +18,7 @@ const getTotalPageFromLink = (link) => {
       }
     }
     let temp = Number(str);
-    if (!isNaN(temp)) {
+    if (str.length && !isNaN(temp)) {
       res = Math.max(res, temp);
     }
   }

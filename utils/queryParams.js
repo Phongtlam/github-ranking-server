@@ -1,5 +1,10 @@
 const url = require('url');
 
+/**
+ *
+ * @param objParams {object}
+ * @returns {string}
+ */
 const queryParamsBuilder = (objParams) => {
   const esc = encodeURIComponent;
   return Object.keys(objParams)
@@ -7,6 +12,11 @@ const queryParamsBuilder = (objParams) => {
     .join('&');
 };
 
+/**
+ *
+ * @param req {{ url }}
+ * @returns {{orgName: (*|string), repoName: (*|string)}}
+ */
 const extractGetQueryParams = (req) => {
   const qs = url.parse(req.url, true).query;
   const res = {

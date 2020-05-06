@@ -4,7 +4,7 @@
   "description": "github ranking",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "NODE_ENV=production node index.js",
     "dev": "NODE_ENV=development nodemon index.js",
     "prettier": "./node_modules/.bin/prettier --single-quote --write '**/**/*.{js,jsx}'",
@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "husky": "^4.2.5",
+    "jest": "^26.0.1",
     "nodemon": "^2.0.3",
     "prettier": "^2.0.5"
   }

@@ -9,6 +9,13 @@ class Fetch {
     this.githubUrl = 'https://api.github.com';
   }
 
+  /**
+   *
+   * @param type {string}
+   * @param orgName {string}
+   * @param repoName {string}
+   * @returns {string}
+   */
   buildRelativePathUrl({ type = '', orgName = '', repoName = '' }) {
     if (type === get.ALL_REPOS) {
       return `/orgs/${orgName}/repos`;
@@ -17,6 +24,14 @@ class Fetch {
     }
   }
 
+  /**
+   *
+   * @param type {string}
+   * @param orgName {string}
+   * @param repoName {string}
+   * @param query {object}
+   * @returns {Promise<void | {error: any}> | Promise<any>}
+   */
   get({ type, orgName, repoName, query }) {
     const queryString = queryParamsBuilder(query);
     const url = new URL(

@@ -1,11 +1,13 @@
 ### Future work:
 1. db for usage metrics
 2. mem cache if user count goes up
+3. currently, only caching at per client level, our total usage is 5000/hour
 
 ### A basic setup, available commands:
 1. npm install
 2. npm run dev - start development server on localhost:3000
 3. npm run apache-bench - run ab on the server (only work if install NginX as below)
+4. npm run test - run local unit tests
 
 - server currently deployed on heroku at https://github-viewer-server.herokuapp.com
 
